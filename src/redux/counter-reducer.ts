@@ -1,7 +1,8 @@
 import {storeType} from "./store";
 
 const initialState:storeType = {
-    valueCount: 0
+    valueCount: 0,
+    maxValue: 5
 };
 
 export const counterReducer = (state = initialState, action: allCounterTypes) => {

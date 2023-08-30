@@ -11,6 +11,7 @@ export const CounterFrame = () => {
             <StyledDial type="number"
                         tabIndex={-1}
                         readOnly
+                        error={counter.valueCount === counter.maxValue ? 'true' : undefined}
                         value={counter.valueCount} />
             <CounterControls />
         </StyledCounterFrame>
@@ -28,8 +29,11 @@ const StyledCounterFrame = styled.div`
   flex-direction: column;
   gap: 15px;
 `
-const StyledDial = styled.input`
-  color: #34333e;
+interface StyledBtnCounterType {
+    error?: string | undefined
+}
+const StyledDial = styled.input<StyledBtnCounterType>`
+  color: ${props => props.error ? 'red' : '#34333e'};
   background-color: #71dffd;
   width: 100%;
   pointer-events: none;
