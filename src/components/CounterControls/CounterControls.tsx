@@ -12,7 +12,11 @@ export const CounterControls = () => {
     const resetValue = () => dispatch(resetValueAC());
     return (
         <StyledCounterControls>
-            <BtnCounter callback={incValue}>inc</BtnCounter>
+            <BtnCounter callback={incValue}
+                        active={counter.valueCount === counter.maxValue}
+            >
+                inc
+            </BtnCounter>
             <BtnCounter callback={resetValue}
                         active={counter.valueCount === 0}>
                 reset
