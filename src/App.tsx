@@ -1,12 +1,29 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import styled from "styled-components";
-import {CounterFrame} from "./components/CounterFrame/CounterFrame";
+import {RightCounterFrame} from "./components/RightCounterFrame/RightCounterFrame";
+import {LeftCounterFrame} from "./components/LeftCounterFrame/LeftCounterFrame";
+import {useDispatch} from "react-redux";
+import {setMaxValueAC, setMinValueAC, setStartValueAC} from "./redux/counter-reducer";
 
 const App = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const storedStartValue = Number(localStorage.getItem('startValue'));
+        const storedMinValue = Number(localStorage.getItem('minValue'));
+        const storedMaxValue = Number(localStorage.getItem('maxValue'));
+
+        storedStartValue && dispatch(setStartValueAC(storedStartValue));
+        storedMinValue && dispatch(setMinValueAC(storedMinValue));
+        storedMaxValue && dispatch(setMaxValueAC(storedMaxValue));
+    }, [dispatch]);
+
+
     return (
         <StyledApp className="App">
-            <CounterFrame/>
+            <LeftCounterFrame/>
+            <RightCounterFrame/>
         </StyledApp>
     );
 }
@@ -19,6 +36,7 @@ const StyledApp = styled.main`
   align-items: center;
   justify-content: center;
   background-color: #34333e;
+  gap: 150px;
 `
 
 export default App;

@@ -4,22 +4,23 @@ import {CounterControls} from "../CounterControls/CounterControls";
 import {useSelector} from "react-redux";
 import {AppRootStateType, storeType} from "../../redux/store";
 
-export const CounterFrame = () => {
+export const RightCounterFrame = () => {
     const counter = useSelector<AppRootStateType, storeType>(store => store.counter);
+
     return (
-        <StyledCounterFrame>
-            <StyledDial type="number"
+        <StyledRightCounterFrame>
+            <StyledDial type="text"
                         tabIndex={-1}
                         readOnly
-                        error={counter.valueCount === counter.maxValue ? 'true' : undefined}
-                        value={counter.valueCount} />
+                        error={counter.startValue === counter.maxValue ? 'true' : undefined}
+                        value={counter.startValue} />
             <CounterControls />
-        </StyledCounterFrame>
+        </StyledRightCounterFrame>
     );
 };
 
-const StyledCounterFrame = styled.div`
-  max-width: 350px;
+const StyledRightCounterFrame = styled.div`
+  max-width: 600px;
   width: 100%;
   padding: 20px;
   border-radius: 10px;
@@ -33,14 +34,15 @@ interface StyledBtnCounterType {
     error?: string | undefined
 }
 const StyledDial = styled.input<StyledBtnCounterType>`
-  color: ${props => props.error ? 'red' : '#34333e'};
-  background-color: #71dffd;
+  color: ${props => props.error ? 'red' : '#71dffd'};
+  background-color: #34333e;
   width: 100%;
   pointer-events: none;
-  border: none;
   border-radius: 5px;
   padding: 35px;
   font-size: 100px;
   font-weight: bold;
   text-align: center;
+  border: 2px solid #71dffd;
+  user-select: none;
 `

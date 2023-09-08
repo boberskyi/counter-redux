@@ -8,17 +8,17 @@ import {incrementValueAC, resetValueAC} from "../../redux/counter-reducer";
 export const CounterControls = () => {
     const counter = useSelector<AppRootStateType, storeType>(store => store.counter);
     const dispatch = useDispatch();
-    const incValue = () => dispatch(incrementValueAC(counter.valueCount + 1));
-    const resetValue = () => dispatch(resetValueAC());
+    const incValue = () => dispatch(incrementValueAC(counter.startValue + 1));
+    const resetValue = () => dispatch(resetValueAC(counter.minValue));
     return (
         <StyledCounterControls>
             <BtnCounter callback={incValue}
-                        active={counter.valueCount === counter.maxValue}
+                        active={counter.startValue === counter.maxValue}
             >
                 inc
             </BtnCounter>
             <BtnCounter callback={resetValue}
-                        active={counter.valueCount === 0}>
+                        active={false}>
                 reset
             </BtnCounter>
         </StyledCounterControls>
@@ -32,5 +32,5 @@ const StyledCounterControls = styled.div`
   padding: 15px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 `

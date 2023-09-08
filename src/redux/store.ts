@@ -2,7 +2,8 @@ import {counterReducer} from "./counter-reducer";
 import {combineReducers, legacy_createStore} from "redux";
 
 export type storeType = {
-    valueCount: number,
+    startValue: number,
+    minValue: number,
     maxValue: number
 }
 
