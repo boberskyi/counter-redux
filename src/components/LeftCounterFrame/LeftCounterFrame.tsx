@@ -6,10 +6,8 @@ import {BtnCounter} from "../BtnCounter/BtnCounter";
 import {InputMinCounter} from "../InputCounter/InputMinCounter";
 import {InputMaxCounter} from "../InputCounter/InputMaxCounter";
 
-export const LeftCounterFrame = () => {
+export const LeftCounterFrame:React.FC = () => {
     const counter = useSelector<AppRootStateType, storeType>(store => store.counter);
-    const valError = counter.maxValue === counter.startValue || counter.maxValue < counter.startValue;
-
 // || counter.maxValue !== Number(localStorage.getItem('maxValue'))
 
     const [activeBtn, setActiveBtn] = useState(false);
@@ -20,7 +18,9 @@ export const LeftCounterFrame = () => {
         localStorage.setItem('maxValue', counter.maxValue.toString());
     }
 
-    const changeInputVal = () => setActiveBtn(false);
+    const changeInputVal = () => {
+        setActiveBtn(false);
+    }
 
     return (
         <StyledLeftCounterFrame>
@@ -29,14 +29,14 @@ export const LeftCounterFrame = () => {
                 <StyledSettingsRow>
                     <StyledSettingsLabel>
                         max value:
-                        <InputMaxCounter error={valError} changeInputVal={changeInputVal}/>
+                        <InputMaxCounter changeInputVal={changeInputVal}/>
                     </StyledSettingsLabel>
                 </StyledSettingsRow>
 
                 <StyledSettingsRow>
                     <StyledSettingsLabel>
                         start value:
-                        <InputMinCounter error={valError} changeInputVal={changeInputVal}/>
+                        <InputMinCounter changeInputVal={changeInputVal}/>
                     </StyledSettingsLabel>
                 </StyledSettingsRow>
 

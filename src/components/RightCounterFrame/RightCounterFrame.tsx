@@ -12,8 +12,11 @@ export const RightCounterFrame = () => {
             <StyledDial type="text"
                         tabIndex={-1}
                         readOnly
-                        error={counter.startValue === counter.maxValue ? 'true' : undefined}
-                        value={counter.startValue} />
+                        error={counter.startValue >= counter.maxValue ? 'true' : undefined}
+                        error_txt={counter.startValue > counter.maxValue ? 'true' : undefined}
+                        value={counter.startValue > counter.maxValue
+                            ? `Start value: ${counter.startValue} can't be greater then max value: ${counter.maxValue} `
+                            : counter.startValue} />
             <CounterControls />
         </StyledRightCounterFrame>
     );
@@ -31,7 +34,8 @@ const StyledRightCounterFrame = styled.div`
   gap: 15px;
 `
 interface StyledBtnCounterType {
-    error?: string | undefined
+    error?: string | undefined,
+    error_txt? : string | undefined
 }
 const StyledDial = styled.input<StyledBtnCounterType>`
   color: ${props => props.error ? 'red' : '#71dffd'};
@@ -40,7 +44,7 @@ const StyledDial = styled.input<StyledBtnCounterType>`
   pointer-events: none;
   border-radius: 5px;
   padding: 35px;
-  font-size: 100px;
+  font-size: ${props => props.error_txt ? '18px' : '100px'};
   font-weight: bold;
   text-align: center;
   border: 2px solid #71dffd;

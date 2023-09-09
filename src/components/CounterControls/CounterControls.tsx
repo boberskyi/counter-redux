@@ -13,12 +13,12 @@ export const CounterControls = () => {
     return (
         <StyledCounterControls>
             <BtnCounter callback={incValue}
-                        active={counter.startValue === counter.maxValue}
+                        active={counter.startValue === counter.maxValue || counter.startValue > counter.maxValue}
             >
                 inc
             </BtnCounter>
             <BtnCounter callback={resetValue}
-                        active={false}>
+                        active={counter.startValue === counter.minValue}>
                 reset
             </BtnCounter>
         </StyledCounterControls>

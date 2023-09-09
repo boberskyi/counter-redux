@@ -5,10 +5,9 @@ import {AppRootStateType, storeType} from "../../redux/store";
 import {setMaxValueAC} from "../../redux/counter-reducer";
 
 type InputCounterType = {
-    error: boolean,
     changeInputVal: () => void
 }
-export const InputMaxCounter:React.FC<InputCounterType> = ({error, ...props}) => {
+export const InputMaxCounter:React.FC<InputCounterType> = ({...props}) => {
     const dispatch = useDispatch();
     const counter = useSelector<AppRootStateType, storeType>(store => store.counter);
     const onInputChange = (e:ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +16,7 @@ export const InputMaxCounter:React.FC<InputCounterType> = ({error, ...props}) =>
     }
 
     return (
-        <StyledSettingsInput value={counter.maxValue} min={counter.startValue} onChange={onInputChange} type='number' error={error ? 'true' : undefined}/>
+        <StyledSettingsInput value={counter.maxValue} min={counter.startValue} onChange={onInputChange} type='number' error={counter.startValue >= counter.maxValue ? 'true' : undefined}/>
     );
 };
 
@@ -31,6 +30,7 @@ const StyledSettingsInput = styled.input<StyledSettingsInputType>`
   border: 1px solid #71dffd;
   border-radius: 5px;
   font-weight: bold;
+  width: 180px;
   
   background: ${props => props.error ? 'rgba(255,0,0,.4)' : '#fff'};
   color: ${props => props.error ? '#fff' : '#000'};
