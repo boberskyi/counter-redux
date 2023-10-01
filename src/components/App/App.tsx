@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import './App.css';
-import styled from "styled-components";
-import {RightCounterFrame} from "./components/RightCounterFrame/RightCounterFrame";
-import {LeftCounterFrame} from "./components/LeftCounterFrame/LeftCounterFrame";
+import '../../App.css';
+import {RightCounterFrame} from "../RightCounterFrame/RightCounterFrame";
+import {LeftCounterFrame} from "../LeftCounterFrame/LeftCounterFrame";
 import {useDispatch} from "react-redux";
-import {setMaxValueAC, setMinValueAC, setStartValueAC} from "./redux/counter-reducer";
+import {StyledApp} from "./AppStyles";
+import {setMaxValueAC, setMinValueAC, setStartValueAC} from "../../redux/actions/actions";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -27,16 +27,5 @@ const App = () => {
         </StyledApp>
     );
 }
-
-
-const StyledApp = styled.main`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #34333e;
-  gap: 150px;
-`
 
 export default App;
