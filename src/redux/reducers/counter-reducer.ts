@@ -28,12 +28,11 @@ export const counterReducer = (state = initialState, action: allCounterTypes) =>
     }
 }
 
-export type allCounterTypes = incrementValueACType | resetValueACType | setStartValueACType | setMaxValueACType | setMinValueACType;
-type incrementValueACType = ReturnType<typeof incrementValueAC>;
-type resetValueACType = ReturnType<typeof resetValueAC>;
-type setStartValueACType = ReturnType<typeof setStartValueAC>;
-type setMinValueACType = ReturnType<typeof setMinValueAC>;
-type setMaxValueACType = ReturnType<typeof setMaxValueAC>;
+export type allCounterTypes = ReturnType<typeof incrementValueAC>
+    | ReturnType<typeof resetValueAC>
+    | ReturnType<typeof setStartValueAC>
+    | ReturnType<typeof setMinValueAC>
+    | ReturnType<typeof setMaxValueAC>;
 
 export const incrementValueAC = (newValue:number) => {
     return {

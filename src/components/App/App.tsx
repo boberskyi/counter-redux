@@ -17,7 +17,7 @@ const App = () => {
         storedStartValue && dispatch(setStartValueAC(storedStartValue));
         storedMinValue && dispatch(setMinValueAC(storedMinValue));
         storedMaxValue && dispatch(setMaxValueAC(storedMaxValue));
-    }, [dispatch]);
+    }, []);
 
 
     return (
