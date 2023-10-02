@@ -16,7 +16,7 @@ export const incrementValueAC = (newValue:number) => {
 }
 export const resetValueAC = (startValue:number) => {
     return {
-        type: RESET_VALUE,
+        type: RESET_VALUE ,
         payload: {
             startValue
         }

@@ -16,7 +16,7 @@ interface StyledBtnCounterType {
     error?: boolean
     error_txt?: boolean
 }
-export const StyledDial = styled.input<StyledBtnCounterType>`
+export const StyledDial = styled.p<StyledBtnCounterType>`
   color: ${props => props.error ? errorColor : bgColor};
   background-color: ${mainColor};
   width: 100%;

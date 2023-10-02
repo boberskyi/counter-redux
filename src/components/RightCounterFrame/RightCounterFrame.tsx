@@ -10,14 +10,12 @@ export const RightCounterFrame = () => {
 
     return (
         <StyledRightCounterFrame>
-            <StyledDial type="text"
-                        tabIndex={-1}
-                        readOnly
-                        error={counterStartValue >= counterMaxValue}
-                        error_txt={counterStartValue > counterMaxValue}
-                        value={counterStartValue > counterMaxValue
-                            ? `Start value: ${counterStartValue} can't be greater then max value: ${counterMaxValue} `
-                            : counterStartValue} />
+            <StyledDial error={counterStartValue >= counterMaxValue}
+                        error_txt={counterStartValue > counterMaxValue}>
+                {counterStartValue > counterMaxValue
+                ? `Start value: ${counterStartValue} can't be greater then max value: ${counterMaxValue} `
+                : counterStartValue}
+            </StyledDial>
             <CounterControls />
         </StyledRightCounterFrame>
     );
