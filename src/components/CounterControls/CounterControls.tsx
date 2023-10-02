@@ -13,15 +13,16 @@ export const CounterControls = () => {
     const dispatch = useDispatch();
     const incValue = () => dispatch(incrementValueAC(counterStartValue + 1));
     const resetValue = () => dispatch(resetValueAC(counterMinValue));
+
+    const isIncButtonActive = counterStartValue === counterMaxValue || counterStartValue > counterMaxValue;
+    const isResetButtonActive = counterStartValue === counterMinValue;
+
     return (
         <StyledCounterControls>
-            <BtnCounter callback={incValue}
-                        is_active={counterStartValue === counterMaxValue || counterStartValue > counterMaxValue}
-            >
+            <BtnCounter callback={incValue} is_active={isIncButtonActive}>
                 inc
             </BtnCounter>
-            <BtnCounter callback={resetValue}
-                        is_active={counterStartValue === counterMinValue}>
+            <BtnCounter callback={resetValue} is_active={isResetButtonActive}>
                 reset
             </BtnCounter>
         </StyledCounterControls>
