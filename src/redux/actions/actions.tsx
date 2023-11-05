@@ -1,19 +1,12 @@
-import {INCREMENT_VALUE, RESET_VALUE, SET_MAX_VALUE, SET_MIN_VALUE, SET_START_VALUE} from "./actionTypes";
+import {
+    RESET_VALUE,
+    SET_VALUES
+} from "./actionTypes";
+import {storeType} from "../store";
+import {Dispatch} from "redux";
 
-export type allCounterTypes = ReturnType<typeof incrementValueAC>
-    | ReturnType<typeof resetValueAC>
-    | ReturnType<typeof setStartValueAC>
-    | ReturnType<typeof setMinValueAC>
-    | ReturnType<typeof setMaxValueAC>;
+export type allCounterTypes = ReturnType<typeof resetValueAC> | ReturnType<typeof setValuesAC>;
 
-export const incrementValueAC = (newValue:number) => {
-    return {
-        type: INCREMENT_VALUE,
-        payload: {
-            newValue
-        }
-    } as const
-}
 export const resetValueAC = (startValue:number) => {
     return {
         type: RESET_VALUE ,
@@ -22,27 +15,16 @@ export const resetValueAC = (startValue:number) => {
         }
     } as const
 }
-export const setStartValueAC = (startValue:number) => {
+export const setValuesAC = (valObj:storeType) => {
     return {
-        type: SET_START_VALUE,
+        type: SET_VALUES,
         payload: {
-            startValue
+            valObj
         }
     } as const
 }
-export const setMinValueAC = (minValue:number) => {
-    return {
-        type: SET_MIN_VALUE,
-        payload: {
-            minValue
-        }
-    } as const
-}
-export const setMaxValueAC = (maxValue:number) => {
-    return {
-        type: SET_MAX_VALUE,
-        payload: {
-            maxValue
-        }
-    } as const
+
+export const setValuesTC = (valObj:storeType) => (dispatch:Dispatch) => {
+    localStorage.setItem('counterValues', JSON.stringify(valObj));
+    dispatch(setValuesAC(valObj));
 }

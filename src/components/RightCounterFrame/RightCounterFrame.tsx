@@ -1,12 +1,15 @@
 import React from 'react';
 import {CounterControls} from "../CounterControls/CounterControls";
-import {useSelector} from "react-redux";
-import {AppRootStateType} from "../../redux/store";
 import {StyledDial, StyledRightCounterFrame} from "./RightCounterFrameStyles";
+import {useAppSelector} from "../../hooks/hooks";
 
 export const RightCounterFrame = () => {
-    const counterStartValue = useSelector<AppRootStateType, number>(store => store.counter.startValue);
-    const counterMaxValue = useSelector<AppRootStateType, number>(store => store.counter.maxValue);
+    const counterStartValue = useAppSelector<number | undefined>(store => store.counter.startValue);
+    const counterMaxValue = useAppSelector<number | undefined>(store => store.counter.maxValue);
+
+    if (counterStartValue === undefined || counterMaxValue === undefined) {
+        throw new Error('One or more values are undefined');
+    }
 
     return (
         <StyledRightCounterFrame>

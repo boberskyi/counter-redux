@@ -2718,7 +2718,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@storybook/addon-actions@7.4.5":
+"@storybook/addon-actions@7.4.5", "@storybook/addon-actions@^7.4.5":
   version "7.4.5"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-7.4.5.tgz#3a3dbe4866ccb796797bf5c0838e493bb0989222"
   integrity sha512-FkjJWmPN/+duLSkRwfa2bwlwjKfY6yCXYn7CRzn3rb64B8f50NB79zAgVLHjkJh9l6T3DIlWtol6vqPHj1aRpw==
@@ -11244,6 +11244,11 @@ redent@^3.0.0:
   dependencies:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
+
+redux-thunk@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.4.2.tgz#b9d05d11994b99f7a91ea223e8b04cf0afa5ef3b"
+  integrity sha512-+P3TjtnP0k/FEjcBL5FZpoovtvrTNT/UXd4/sluaSyrURlSlhLSzEdfsTBW7WsKB6yPvgd7q/iZPICFjW4o57Q==
 
 redux@^4.0.0, redux@^4.2.1:
   version "4.2.1"

@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../redux/store";
+import {storeType} from "../../redux/store";
 import {BtnCounter} from "../BtnCounter/BtnCounter";
 import {
     StyledLeftControls,
@@ -8,32 +7,43 @@ import {
     StyledSettings
 } from "./LeftCounterFrameStyles";
 import {InputCounter} from "../InputCounter/InputCounter";
-import {setMaxValueAC, setMinValueAC, setStartValueAC} from "../../redux/actions/actions";
+import {setValuesAC, setValuesTC} from "../../redux/actions/actions";
+import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 
 export const LeftCounterFrame: React.FC = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
-    const counterStartValue = useSelector<AppRootStateType, number>(store => store.counter.startValue);
-    const counterMinValue = useSelector<AppRootStateType, number>(store => store.counter.minValue);
-    const counterMaxValue = useSelector<AppRootStateType, number>(store => store.counter.maxValue);
+    const counterStartValue = useAppSelector<number | undefined>(store => store.counter.startValue);
+    const counterMinValue = useAppSelector<number | undefined>(store => store.counter.minValue);
+    const counterMaxValue = useAppSelector<number | undefined>(store => store.counter.maxValue);
+
+    if (counterStartValue === undefined || counterMinValue === undefined || counterMaxValue === undefined) {
+        throw new Error('One or more values are undefined');
+    }
 
     const [activeBtn, setActiveBtn] = useState(false);
     const onBtnSetClick = () => {
+        const obj:storeType = {
+            startValue: counterStartValue,
+            minValue: counterMinValue,
+            maxValue: counterMaxValue
+        };
+
         setActiveBtn(true);
-        localStorage.setItem('startValue', JSON.stringify(counterStartValue));
-        localStorage.setItem('minValue', JSON.stringify(counterMinValue));
-        localStorage.setItem('maxValue', JSON.stringify(counterMaxValue));
+        dispatch(setValuesTC(obj));
     }
     const disableActiveBtn = () => setActiveBtn(false);
 
     const onMinInputChange = (text:string) => {
         disableActiveBtn();
-        dispatch(setMinValueAC(Number(text)));
-        dispatch(setStartValueAC(Number(text)));
+        dispatch(setValuesAC({
+            minValue: +text,
+            startValue: +text
+        }));
     }
     const onMaxInputChange = (text:string) => {
         disableActiveBtn();
-        dispatch(setMaxValueAC(Number(text)));
+        dispatch(setValuesAC({maxValue: +text}))
     }
 
 
